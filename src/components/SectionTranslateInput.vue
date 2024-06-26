@@ -2,6 +2,23 @@
 
 export default {
 
+    data() {
+
+        return {
+
+            selectedOption: null,
+
+            languageOptions: [
+                { value: 'Spanish', label: '🇪🇸 Spagnolo' },
+                { value: 'English', label: '🇬🇧 Inglese' },
+                { value: 'French', label: '🇫🇷 Francese' },
+                { value: 'German', label: '🇩🇪 Tedesco' },
+                { value: 'Portuguese', label: '🇵🇹 Portoghese' },
+            ],
+
+        }
+
+    }
 
 }
 
@@ -10,22 +27,24 @@ export default {
 
 <template>
 
-    <div class="language-select">
+    <div class="container">
 
-        <select id="options" name="options">
+        <div class="input-group py-4">
 
-            <option value="Spanish">🇪🇸</option>
-            <option value="English">🇬🇧</option>
-            <option value="French">🇫🇷</option>
-            <option value="German">🇩🇪</option>
-            <option value="Portuguese">🇵🇹</option>
+            <select id="selectLanguages" name="languageOptions" v-model="selectedOption">
 
-        </select>
+                <option disabled>Lingua</option>
 
-    </div>
+                <option v-for="languageOption in languageOptions " :key="languageOption.value">
+                    {{ languageOption.label }}</option>
 
-    <div class="position-translate-btn">
-        <button type="button" class="btn btn-primary translate-btn">Translate</button>
+
+            </select>
+
+            <button type="button" class="btn btn-primary translate-btn">Translate</button>
+
+        </div>
+
     </div>
 
 </template>
@@ -34,38 +53,29 @@ export default {
 <style lang="scss" scoped>
 @use 'src/styles/partials/mixins.scss' as *;
 
-.language-select {
-
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding-top: 2rem;
-
+.input-group {
+    justify-content: center;
 }
 
-select {
+#selectLanguages,
+.translate-btn {
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    text-transform: uppercase;
+}
 
+#selectLanguages {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    height: 2.6rem;
-    width: 3.6rem;
-    border-radius: 8px;
-    font-size: 1.8rem;
-
-}
-
-option {
+    font-size: 1rem;
+    width: 5.5rem;
     text-align: center;
 }
 
-.position-translate-btn {
-    position: relative;
-}
-
 .translate-btn {
-    margin-top: 3.5rem;
-    @include position-center;
+    font-size: 1rem;
+    width: 8rem;
+    font-weight: bold;
 }
 </style>

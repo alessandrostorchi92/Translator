@@ -4,13 +4,13 @@ export default {
 
     data() {
         return {
-            wordToTranslate: "",
+            wordsToTranslate: "",
         };
     },
 
     computed: {
         charCount() {
-            return this.wordToTranslate.length;
+            return this.wordsToTranslate.length;
         },
     },
 
@@ -21,12 +21,14 @@ export default {
 
 <template>
 
-    <div class="italianwordsToTranslate-container">
+    <div class="wordsToTranslate-container mt-5">
 
-        <textarea class="italianWordsToTranslate-input input-italian-border"
-            placeholder="Inserisci il testo da tradurre..." v-model="wordToTranslate" maxlength="60"></textarea>
+        <textarea class="wordsToTranslate-input italian-border" placeholder="Inserisci il testo da tradurre..."
+            v-model="wordsToTranslate" maxlength="60">
+        </textarea>
 
-        <span class="charCount-input">{{ charCount }}/60</span>
+        <span class="charCount-input" :class="{ 'text-danger': wordsToTranslate.length === 60 }">
+            {{ charCount }}/60</span>
 
     </div>
 
@@ -36,39 +38,39 @@ export default {
 <style lang="scss" scoped>
 @use 'src/styles/partials/mixins.scss' as *;
 
-.italianwordsToTranslate-container {
+.wordsToTranslate-container {
 
-    padding-top: 4rem;
     position: relative;
-    @include flex-center;
+    display: flex;
+    justify-content: center;
+
 
 }
 
-.italianWordsToTranslate-input {
+.wordsToTranslate-input {
 
     flex-basis: 85%;
-    padding: 2rem;
-    font-size: 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 0.8rem;
+    padding: 4rem;
+    text-align: center;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 1rem;
 
 }
 
-.input-italian-border {
+.italian-border {
 
     border-style: solid;
     border-width: 2.5px;
     border-color: green white red white;
-
 
 }
 
 .charCount-input {
 
     position: absolute;
-    bottom: 10px;
-    right: 50px;
+    bottom: 1rem;
     font-size: 0.6rem;
-    color: gray;
+    color: rgb(93, 87, 87);
 }
 </style>
