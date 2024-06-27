@@ -9,11 +9,11 @@ export default {
             selectedOption: null,
 
             languageOptions: [
-                { value: 'Spanish', label: '🇪🇸 Spagnolo' },
-                { value: 'English', label: '🇬🇧 Inglese' },
-                { value: 'French', label: '🇫🇷 Francese' },
-                { value: 'German', label: '🇩🇪 Tedesco' },
-                { value: 'Portuguese', label: '🇵🇹 Portoghese' },
+                { value: 'Spanish', label: '🇪🇸' },
+                { value: 'English', label: '🇬🇧' },
+                { value: 'French', label: '🇫🇷' },
+                { value: 'German', label: '🇩🇪' },
+                { value: 'Portuguese', label: '🇵🇹' },
             ],
 
         }
@@ -33,11 +33,10 @@ export default {
 
             <select id="selectLanguages" name="languageOptions" v-model="selectedOption">
 
-                <option disabled>Lingua</option>
+                <option selected disabled :value="null">🌎</option>
 
-                <option v-for="languageOption in languageOptions " :key="languageOption.value">
+                <option v-for="languageOption in languageOptions" :key="languageOption.value">
                     {{ languageOption.label }}</option>
-
 
             </select>
 
@@ -68,9 +67,13 @@ export default {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    font-size: 1rem;
+    font-size: 2rem;
     width: 5.5rem;
     text-align: center;
+}
+
+select option:first-child {
+    font-size: 1rem;
 }
 
 .translate-btn {

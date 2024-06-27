@@ -23,7 +23,7 @@ export default {
 
     <div class="wordsToTranslate-container mt-5">
 
-        <textarea class="wordsToTranslate-input italian-border" placeholder="Inserisci il testo da tradurre..."
+        <textarea class="wordsToTranslate-input italian-border" placeholder="Please enter the text to be translated..."
             v-model="wordsToTranslate" maxlength="60">
         </textarea>
 
@@ -70,7 +70,7 @@ export default {
 
     position: absolute;
     bottom: 1rem;
-    font-size: 0.6rem;
+    font-size: 0.8rem;
     color: rgb(93, 87, 87);
 }
 </style>
