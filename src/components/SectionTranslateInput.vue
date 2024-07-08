@@ -6,21 +6,38 @@ export default {
 
         return {
 
-            selectedOption: null,
-
+            selectedFlagOption: null,
             languageOptions: [
                 { value: 'Spanish', label: '🇪🇸' },
                 { value: 'English', label: '🇬🇧' },
                 { value: 'French', label: '🇫🇷' },
                 { value: 'German', label: '🇩🇪' },
                 { value: 'Portuguese', label: '🇵🇹' },
+                { value: 'Russian', label: '🇷🇺' },
+                { value: 'Chinese', label: '🇨🇳' },
+                { value: 'Japanese', label: '🇯🇵' },
+                { value: 'Arabic', label: '🇸🇦' }
             ],
 
+
         }
+
+    },
+
+    methods: {
+
+        selectedFlag() {
+
+        console.log(this.selectedFlagOption);
+
+        },
 
     }
 
 }
+
+
+
 
 </script>
 
@@ -31,7 +48,7 @@ export default {
 
         <div class="input-group py-4">
 
-            <select id="selectLanguages" name="languageOptions" v-model="selectedOption">
+            <select id="selectLanguages" name="languageOptions" v-model="selectedFlagOption">
 
                 <option selected disabled :value="null">🌎</option>
 
@@ -40,7 +57,7 @@ export default {
 
             </select>
 
-            <button type="button" class="btn btn-primary translate-btn">Translate</button>
+            <button type="button" class="btn btn-primary translate-btn" @click="selectedFlag">Translate</button>
 
         </div>
 
@@ -50,7 +67,7 @@ export default {
 
 
 <style lang="scss" scoped>
-@use 'src/styles/partials/mixins.scss' as *;
+
 
 .input-group {
     justify-content: center;
