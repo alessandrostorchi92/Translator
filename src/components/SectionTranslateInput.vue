@@ -1,5 +1,7 @@
 <script>
 
+import axios from 'axios';
+
 export default {
 
     data() {
@@ -19,25 +21,30 @@ export default {
                 { value: 'Arabic', label: '🇸🇦' }
             ],
 
-
         }
 
     },
 
     methods: {
 
-        selectedFlag() {
+        async translateLang() {
 
-        console.log(this.selectedFlagOption);
+            const url = "https://api.mymemory.translated.net/get?q=Hello World!&langpair=en|it";
 
-        },
+            try {
 
+                const response = await axios.get(url);
+                console.log(response.data.responseData.translatedText);
+
+            } catch(error) {
+
+                console.error(error);
+
+            }
+        }
     }
 
 }
-
-
-
 
 </script>
 
@@ -57,7 +64,7 @@ export default {
 
             </select>
 
-            <button type="button" class="btn btn-primary translate-btn" @click="selectedFlag">Translate</button>
+            <button type="button" class="btn btn-primary translate-btn" @click="translateLang">Translate</button>
 
         </div>
 
