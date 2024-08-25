@@ -1,6 +1,8 @@
 <script>
 
 import axios from "axios";
+import { store } from "../store";
+
 
 export default {
 
@@ -8,13 +10,31 @@ export default {
 
     return {
 
-      selectedFlagOption: null,
+      store,
 
-      languageOptions: [
+      selectedSourceLanguage: { value: "", label: "🌎" },
+
+      sourceLangOptions: [
         { value: "es", label: "🇪🇸" },
         { value: "en", label: "🇬🇧" },
         { value: "fr", label: "🇫🇷" },
         { value: "de", label: "🇩🇪" },
+        { value: "it", label: "🇮🇹" },
+        { value: "pt", label: "🇵🇹" },
+        { value: "ru", label: "🇷🇺" },
+        { value: "zh", label: "🇨🇳" },
+        { value: "ja", label: "🇯🇵" },
+        { value: "ar", label: "🇸🇦" },
+      ],
+
+      selectedTargetLanguage: { value: "", label: "🌎" },
+
+      targetLangOptions: [
+        { value: "es", label: "🇪🇸" },
+        { value: "en", label: "🇬🇧" },
+        { value: "fr", label: "🇫🇷" },
+        { value: "de", label: "🇩🇪" },
+        { value: "it", label: "🇮🇹" },
         { value: "pt", label: "🇵🇹" },
         { value: "ru", label: "🇷🇺" },
         { value: "zh", label: "🇨🇳" },
@@ -35,11 +55,11 @@ export default {
       try {
 
         const response = await axios.get(this.urlApi, {
-            params: {
-                q: this.text, // Devo inserire la variabile dell'altro componente: wordsToTranslate
-                langpair: `it|${this.selectedFlagOption?.value}`
-            }
-        });
+          params: {
+              q: this.store.wordsToTranslate,
+              langpair: `${this.selectedSourceLanguage?.value}|${this.selectedTargetLanguage?.value}`
+          }
+});
 
         console.log(response.data.responseData.translatedText);
 
@@ -64,55 +84,43 @@ export default {
 <template>
   <div class="container">
     <div class="input-group py-4">
-      <select
-        id="selectLanguages"
-        name="languageOptions"
-        v-model="selectedFlagOption"
-      >
-        <option selected disabled :value="null">🌎</option>
 
-        <option
-          v-for="languageOption in languageOptions"
-          :key="languageOption.value"
-        >
-          {{ languageOption.label }}
+      <select id="selectSourceLanguages" name="sourceLangOptions" v-model="selectedSourceLanguage">
+        <option selected disabled :value="{ value: '', label: '🌎' }">🌎</option>
+
+        <option v-for="sourceLangOption in sourceLangOptions" :key="sourceLangOption.value" :value="sourceLangOption">
+          {{ sourceLangOption.label }}
         </option>
+
       </select>
 
-      <button
-        type="button"
-        class="btn btn-primary translate-btn"
-        @click="translateLang"
-      >
-        Translate
-      </button>
+      <button type="button" class="btn btn-primary translate-btn" @click="translateLang">Translate</button>
+
+      <select id="selectTargetLanguages" name="targetLangOptions" v-model="selectedTargetLanguage">
+        <option selected disabled :value="{ value: '', label: '🌎' }">🌎</option>
+
+        <option v-for="targetLangOption in targetLangOptions" :key="targetLangOption .value" :value="targetLangOption ">
+          {{ targetLangOption .label }}
+        </option>
+
+      </select>
+
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+
 .input-group {
   justify-content: center;
 }
 
-#selectLanguages,
+#selectSourceLanguages,
+#selectTargetLanguages,
 .translate-btn {
   padding: 0.8rem;
   border: 1px solid #ccc;
   text-transform: uppercase;
-}
-
-#selectLanguages {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  font-size: 2rem;
-  width: 5.5rem;
-  text-align: center;
-}
-
-select option:first-child {
-  font-size: 1rem;
 }
 
 .translate-btn {
@@ -120,4 +128,19 @@ select option:first-child {
   width: 8rem;
   font-weight: bold;
 }
+
+#selectSourceLanguages,
+#selectTargetLanguages {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-size: 2rem;
+  width: 5rem;
+  text-align: center;
+}
+
+select option {
+  font-size: 1rem;
+}
+
 </style>

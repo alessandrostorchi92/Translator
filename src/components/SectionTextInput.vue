@@ -1,16 +1,22 @@
 <script>
 
+import { store } from "../store";
+
 export default {
 
     data() {
+
         return {
-            wordsToTranslate: "",
+
+            store,
+
         };
+
     },
 
     computed: {
         charCount() {
-            return this.wordsToTranslate.length;
+            return this.store.wordsToTranslate.length;
         },
     },
 
@@ -23,11 +29,11 @@ export default {
 
     <div class="wordsToTranslate-container mt-5">
 
-        <textarea class="wordsToTranslate-input italian-border" placeholder="Please enter the text to be translated..."
-            v-model="wordsToTranslate" maxlength="60">
+        <textarea class="wordsToTranslate-input" placeholder="Please enter the text to be translated..."
+            v-model="store.wordsToTranslate" maxlength="60">
         </textarea>
 
-        <span class="charCount-input" :class="{ 'text-danger': wordsToTranslate.length === 60 }">
+        <span class="charCount-input" :class="{ 'text-danger': store.wordsToTranslate.length === 60 }">
             {{ charCount }}/60</span>
 
     </div>
