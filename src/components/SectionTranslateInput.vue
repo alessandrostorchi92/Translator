@@ -12,8 +12,6 @@ export default {
 
       store,
 
-      selectedSourceLanguage: { value: "", label: "🌎" },
-
       sourceLangOptions: [
         { value: "es", label: "🇪🇸" },
         { value: "en", label: "🇬🇧" },
@@ -26,8 +24,6 @@ export default {
         { value: "ja", label: "🇯🇵" },
         { value: "ar", label: "🇸🇦" },
       ],
-
-      selectedTargetLanguage: { value: "", label: "🌎" },
 
       targetLangOptions: [
         { value: "es", label: "🇪🇸" },
@@ -57,7 +53,7 @@ export default {
         const response = await axios.get(this.urlApi, {
           params: {
               q: this.store.wordsToTranslate,
-              langpair: `${this.selectedSourceLanguage?.value}|${this.selectedTargetLanguage?.value}`
+              langpair: `${this.store.selectedSourceLanguage?.value}|${this.store.selectedTargetLanguage?.value}`
           }
 });
 
@@ -85,7 +81,7 @@ export default {
   <div class="container">
     <div class="input-group py-4">
 
-      <select id="selectSourceLanguages" name="sourceLangOptions" v-model="selectedSourceLanguage">
+      <select id="selectSourceLanguages" name="sourceLangOptions" v-model="store.selectedSourceLanguage">
         <option selected disabled :value="{ value: '', label: '🌎' }">🌎</option>
 
         <option v-for="sourceLangOption in sourceLangOptions" :key="sourceLangOption.value" :value="sourceLangOption">
@@ -96,7 +92,7 @@ export default {
 
       <button type="button" class="btn btn-primary translate-btn" @click="translateLang">Translate</button>
 
-      <select id="selectTargetLanguages" name="targetLangOptions" v-model="selectedTargetLanguage">
+      <select id="selectTargetLanguages" name="targetLangOptions" v-model="store.selectedTargetLanguage">
         <option selected disabled :value="{ value: '', label: '🌎' }">🌎</option>
 
         <option v-for="targetLangOption in targetLangOptions" :key="targetLangOption .value" :value="targetLangOption ">

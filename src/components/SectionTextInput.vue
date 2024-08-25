@@ -18,8 +18,42 @@ export default {
         charCount() {
             return this.store.wordsToTranslate.length;
         },
-    },
+        appliedBorder() {
+            switch (this.store.selectedSourceLanguage?.value) {
 
+                case 'es':
+                    return 'spanish-border'
+                
+                case 'en':
+                    return 'english-border';
+
+                case 'fr':
+                    return 'french-border';
+
+                case 'de':
+                    return 'german-border';
+
+                case 'pt':
+                    return 'portuguese-border';
+
+                case 'ru':
+                    return 'russian-border';
+
+                case 'zh':
+                    return 'chinese-border';
+
+                case 'ja':
+                    return 'japanese-border';
+
+                case 'ar':
+                    return 'arabic-border'
+                    
+                default:
+                    return ''; 
+                    
+            }
+        }
+    },
 
 }
 
@@ -29,7 +63,7 @@ export default {
 
     <div class="wordsToTranslate-container mt-5">
 
-        <textarea class="wordsToTranslate-input" placeholder="Please enter the text to be translated..."
+        <textarea class="wordsToTranslate-input flag-border-style" :class="appliedBorder" placeholder="Please enter the text to be translated..."
             v-model="store.wordsToTranslate" maxlength="60">
         </textarea>
 
@@ -58,10 +92,49 @@ export default {
     border-radius: 1rem;
 }
 
-.italian-border {
+.flag-border-style {
     border-style: solid;
-    border-width: 2.5px;
+    border-width: 3.5px;
+}
+
+.italian-border {
     border-color: green white red white;
+}
+
+.spanish-border {
+    border-color: red yellow red yellow;
+}
+
+.english-border {
+    border-color: blue white red white;
+}
+
+.french-border {
+    border-color: blue white red white;
+}
+
+.german-border {
+    border-color: black red yellow red;
+}
+
+.portuguese-border {
+    border-color: green white red yellow;
+}
+
+.russian-border {
+    border-color: white blue red blue;
+}
+
+.chinese-border {
+    border-color: red yellow red yellow;
+}
+
+.japanese-border {
+    border-color: white red white red;
+}
+
+.arabic-border {
+    border-color: black white green white;
 }
 
 .charCount-input {
