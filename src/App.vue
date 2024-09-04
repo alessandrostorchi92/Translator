@@ -3,13 +3,17 @@
 import SectionTextInput from "./components/SectionTextInput.vue";
 import Title from "./components/Title.vue";
 import SectionTranslateInput from "./components/SectionTranslateInput.vue"
+import SectionTextTranslated from "./components/SectionTextTranslated.vue";
+import SectionResetAll from "./components/SectionResetAll.vue";
 
 export default {
 
     components: {
         Title,
         SectionTextInput,
-        SectionTranslateInput
+        SectionTranslateInput,
+        SectionTextTranslated,
+        SectionResetAll
     },
 
 }
@@ -28,6 +32,14 @@ export default {
 
     <section>
         <SectionTranslateInput></SectionTranslateInput>
+    </section>
+
+    <section>
+        <SectionTextTranslated></SectionTextTranslated>
+    </section>
+
+    <section>
+        <SectionResetAll></SectionResetAll>
     </section>
 
 </template>

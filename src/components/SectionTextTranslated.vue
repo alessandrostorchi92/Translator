@@ -1,6 +1,6 @@
 <script>
 
-import { store } from "../store";
+import { store, translateLang } from "../store";
 
 export default {
 
@@ -10,16 +10,15 @@ export default {
 
             store,
 
-        };
+        }
 
     },
 
+
     computed: {
-        charCount() {
-            return this.store.wordsToTranslate.length;
-        },
+        
         appliedBorder() {
-            switch (this.store.selectedSourceLanguage?.value) {
+            switch (this.store.selectedTargetLanguage?.value) {
 
                 case 'es':
                     return 'spanish-border'
@@ -34,7 +33,7 @@ export default {
                     return 'german-border';
 
                 case 'it':
-                    return 'italian-border ';
+                    return 'italian-border';
 
                 case 'pt':
                     return 'portuguese-border';
@@ -56,6 +55,7 @@ export default {
                     
             }
         }
+
     },
 
 }
@@ -64,24 +64,19 @@ export default {
 
 <template>
 
-    <div class="wordsToTranslate-container mt-4">
+    <div class="textTranslated-container">
 
-        <textarea class="wordsToTranslate-input flag-border-style" :class="appliedBorder" placeholder="Please enter the text to be translated..."
-            v-model="store.wordsToTranslate" maxlength="60">
-        </textarea>
-
-        <span class="charCount-input" :class="{ 'text-danger': store.wordsToTranslate.length === 60 }">
-            {{ charCount }}/60</span>
+        <textarea class="wordsToTranslate-input flag-border-style" :class="appliedBorder">{{ store.translatedText }}</textarea>
 
     </div>
 
-</template>
 
+
+</template>
 
 <style lang="scss" scoped>
 
-.wordsToTranslate-container {
-    position: relative;
+.textTranslated-container {
     display: flex;
     justify-content: center;
     max-width: 390px; 
@@ -141,10 +136,4 @@ export default {
     border-color: black white green white;
 }
 
-.charCount-input {
-    position: absolute;
-    bottom: 1rem;
-    font-size: 0.8rem;
-    color: rgb(93, 87, 87);
-}
 </style>

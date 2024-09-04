@@ -1,8 +1,6 @@
 <script>
 
-import axios from "axios";
-import { store } from "../store";
-
+import { store, translateLang } from "../store";
 
 export default {
 
@@ -38,39 +36,12 @@ export default {
         { value: "ar", label: "🇸🇦" },
       ],
 
-      urlApi: "https://api.mymemory.translated.net/get",
-
     };
 
   },
 
   methods: {
-
-    async translateLang() {
-
-      try {
-
-        const response = await axios.get(this.urlApi, {
-          params: {
-              q: this.store.wordsToTranslate,
-              langpair: `${this.store.selectedSourceLanguage?.value}|${this.store.selectedTargetLanguage?.value}`
-          }
-});
-
-        console.log(response.data.responseData.translatedText);
-
-      } catch (error) {
-
-        console.error("Si è verificato un errore durante la richiesta:",error.message);
-
-      } finally {
-
-        console.log("Richiesta effettuata");
-
-      }
-
-    },
-    
+    translateLang, 
   },
 
 };
@@ -95,7 +66,7 @@ export default {
       <select id="selectTargetLanguages" name="targetLangOptions" v-model="store.selectedTargetLanguage">
         <option selected disabled :value="{ value: '', label: '🌎' }">🌎</option>
 
-        <option v-for="targetLangOption in targetLangOptions" :key="targetLangOption .value" :value="targetLangOption ">
+        <option v-for="targetLangOption in targetLangOptions" :key="targetLangOption .value" :value="targetLangOption">
           {{ targetLangOption .label }}
         </option>
 
@@ -114,14 +85,14 @@ export default {
 #selectSourceLanguages,
 #selectTargetLanguages,
 .translate-btn {
-  padding: 0.8rem;
+  padding: 0.4rem;
   border: 1px solid #ccc;
   text-transform: uppercase;
 }
 
 .translate-btn {
   font-size: 1rem;
-  width: 8rem;
+  width: 7rem;
   font-weight: bold;
 }
 
