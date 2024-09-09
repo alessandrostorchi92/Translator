@@ -23,8 +23,9 @@ export default {
 
 .title-container {
     @include flex-center;
+    min-width: 390px;
+    width: 100%;
     height: 6rem;
-    flex-grow: 1;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     background: rgb(2, 0, 36);
     background: linear-gradient(127deg, rgba(2, 0, 36, 1) 0%, rgba(20, 9, 121, 1) 16%, rgba(0, 146, 255, 1) 79%);

@@ -84,7 +84,10 @@ export default {
     position: relative;
     display: flex;
     justify-content: center;
-    max-width: 390px; 
+    width: 100%;
+    min-width: 390px;
+    container-type: inline-size;
+    container-name: text-container; 
 }
 
 .wordsToTranslate-input {
@@ -147,4 +150,11 @@ export default {
     font-size: 0.8rem;
     color: rgb(93, 87, 87);
 }
+
+@container text-container (min-width: 1200px) {
+    .wordsToTranslate-input {
+        font-size: 1.5rem;
+    }
+}
+
 </style>

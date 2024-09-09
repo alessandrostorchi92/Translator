@@ -42,3 +42,10 @@ export const translateLang =  async () => {
 
 }
 
+export const resetInputs = () => {
+    store.wordsToTranslate = "";
+    store.translatedText = "";
+    store.selectedSourceLanguage = { value: "", label: "🌎" };
+    store.selectedTargetLanguage = { value: "", label: "🌎" };
+}
+

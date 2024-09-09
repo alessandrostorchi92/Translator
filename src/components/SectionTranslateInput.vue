@@ -61,7 +61,7 @@ export default {
 
       </select>
 
-      <button type="button" class="btn btn-primary translate-btn" @click="translateLang">Translate</button>
+      <button type="button" class="btn btn-primary translate-btn" :disabled="!store.wordsToTranslate || store.wordsToTranslate.trim() === ''" @click="translateLang">Translate</button>
 
       <select id="selectTargetLanguages" name="targetLangOptions" v-model="store.selectedTargetLanguage">
         <option selected disabled :value="{ value: '', label: '🌎' }">🌎</option>
@@ -82,18 +82,14 @@ export default {
   justify-content: center;
 }
 
-#selectSourceLanguages,
-#selectTargetLanguages,
 .translate-btn {
-  padding: 0.4rem;
-  border: 1px solid #ccc;
-  text-transform: uppercase;
-}
-
-.translate-btn {
+  padding: 1rem;
   font-size: 1rem;
-  width: 7rem;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  width: 8rem;
   font-weight: bold;
+  text-transform: uppercase;
 }
 
 #selectSourceLanguages,

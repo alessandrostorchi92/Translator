@@ -63,5 +63,4 @@ section {
     width: 100%;
 }
 
-@media screen and (min-width: 460px) {}
 </style>

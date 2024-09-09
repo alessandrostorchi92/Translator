@@ -64,9 +64,9 @@ export default {
 
 <template>
 
-    <div class="textTranslated-container">
+    <div class="text-translated-container">
 
-        <textarea class="wordsToTranslate-input flag-border-style" :class="appliedBorder">{{ store.translatedText }}</textarea>
+        <textarea class="text-translated flag-border-style" :class="appliedBorder">{{ store.translatedText }}</textarea>
 
     </div>
 
@@ -76,13 +76,16 @@ export default {
 
 <style lang="scss" scoped>
 
-.textTranslated-container {
+.text-translated-container {
     display: flex;
     justify-content: center;
-    max-width: 390px; 
+    width: 100%;
+    min-width: 390px;
+    container-type: inline-size;
+    container-name: translation-container; 
 }
 
-.wordsToTranslate-input {
+.text-translated{
     flex-basis: 80%;
     padding: 3rem;
     text-align: center;
@@ -134,6 +137,12 @@ export default {
 
 .arabic-border {
     border-color: black white green white;
+}
+
+@container translation-container (min-width: 1200px) {
+    .text-translated  {
+        font-size: 1.5rem;
+    }
 }
 
 </style>
